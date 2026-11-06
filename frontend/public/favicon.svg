@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Balance scale with modern design -->
+  <circle cx="24" cy="24" r="24" fill="#111157"/>
+  <!-- Scale beam -->
+  <rect x="12" y="22" width="24" height="2" rx="1" fill="#f59e0b"/>
+  <!-- Center pillar -->
+  <rect x="23" y="14" width="2" height="20" rx="1" fill="#f59e0b"/>
+  <!-- Left pan -->
+  <ellipse cx="14" cy="28" rx="5" ry="2" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="14" y1="26" x2="14" y2="23" stroke="#f59e0b" stroke-width="1.5"/>
+  <!-- Right pan -->
+  <ellipse cx="34" cy="28" rx="5" ry="2" fill="none" stroke="#6079fc" stroke-width="1.5"/>
+  <line x1="34" y1="26" x2="34" y2="23" stroke="#6079fc" stroke-width="1.5"/>
+  <!-- Top ornament -->
+  <circle cx="24" cy="14" r="2.5" fill="#f59e0b"/>
+</svg>

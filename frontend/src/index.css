@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 84% 5%;
+    --foreground: 213 31% 91%;
+    --card: 223 47% 8%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20% 95%;
+    --primary: 236 89% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 215 20% 85%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215 20% 60%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 20% 16%;
+    --input: 220 20% 14%;
+    --ring: 236 89% 60%;
+    --radius: 0.75rem;
+    --sidebar-width: 260px;
+    --header-height: 56px;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222 84% 5%;
+    --card: 0 0% 98%;
+    --card-foreground: 222 84% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
+    --primary: 236 89% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 20%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 43 96% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 236 89% 50%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 9999px;
+    min-height: 40px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring));
+  }
+}
+
+@layer components {
+  /* Glass morphism card */
+  .glass-card {
+    background-color: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Chat message styles */
+  .chat-message-user {
+    background-color: hsl(var(--primary) / 0.1);
+    border: 1px solid hsl(var(--primary) / 0.2);
+    border-radius: 1rem 1rem 0.25rem 1rem;
+    padding: 0.75rem 1rem;
+    color: hsl(var(--foreground));
+  }
+
+  .chat-message-assistant {
+    background-color: hsl(var(--card) / 0.6);
+    border: 1px solid hsl(var(--border) / 0.5);
+    border-radius: 1rem 1rem 1rem 0.25rem;
+    padding: 0.75rem 1rem;
+    color: hsl(var(--foreground));
+  }
+
+  /* Sidebar item */
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .sidebar-item:hover {
+    background-color: hsl(var(--secondary) / 0.8);
+    color: hsl(var(--foreground));
+  }
+  .sidebar-item.active {
+    background-color: hsl(var(--primary) / 0.15);
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--primary) / 0.2);
+  }
+
+  /* Typing indicator dots */
+  .typing-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: hsl(var(--muted-foreground) / 0.6);
+    border-radius: 9999px;
+    animation: typing-dot 1.4s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+  }
+
+  /* Page fade in */
+  .page-enter {
+    animation: fade-in-up 0.35s ease-out both;
+  }
+
+  /* Markdown content styles */
+  .markdown-body {
+    color: hsl(var(--foreground));
+    line-height: 1.7;
+  }
+
+  .markdown-body h1 { @apply text-2xl font-bold font-display mb-4 mt-6; }
+  .markdown-body h2 { @apply text-xl font-semibold font-display mb-3 mt-5; }
+  .markdown-body h3 { @apply text-lg font-semibold mb-2 mt-4; }
+  .markdown-body p { @apply mb-3 text-sm leading-relaxed; }
+  .markdown-body ul { @apply list-disc list-inside mb-3 space-y-1; }
+  .markdown-body ol { @apply list-decimal list-inside mb-3 space-y-1; }
+  .markdown-body li { @apply text-sm pl-2; }
+  .markdown-body blockquote {
+    border-left: 2px solid hsl(var(--accent));
+    padding-left: 1rem;
+    margin: 0.75rem 0;
+    color: hsl(var(--muted-foreground));
+    font-style: italic;
+    font-size: 0.875rem;
+  }
+  .markdown-body code {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .markdown-body pre {
+    background-color: hsl(var(--muted));
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    overflow-x: auto;
+  }
+  .markdown-body pre code {
+    background: transparent;
+    padding: 0;
+  }
+  .markdown-body a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.15s;
+  }
+  .markdown-body a:hover { opacity: 0.8; }
+  .markdown-body table { @apply w-full border-collapse mb-3 text-sm; }
+  .markdown-body th {
+    background-color: hsl(var(--muted));
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid hsl(var(--border));
+  }
+  .markdown-body td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid hsl(var(--border));
+  }
+  .markdown-body hr {
+    border-color: hsl(var(--border));
+    margin: 1rem 0;
+  }
+  .markdown-body strong {
+    font-weight: 600;
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
